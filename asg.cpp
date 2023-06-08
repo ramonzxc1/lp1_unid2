@@ -50,37 +50,45 @@ void Asg::set_adicionalInsalubridade(float adicionalInsalubridade_)
 }
 float Asg::calcularSalario(int diasFaltas)
 {  
-    float temp_salario = stof(get_salario());
+    // Salario base.
+
+    float salario = stof(get_salario());
 
     // As faltas deverão ser descontadas do salário base.
-    temp_salario = temp_salario - diasFaltas * (temp_salario / (365.25/12));
+    salario = salario - diasFaltas * (salario / (365.25/12));
     // Após, adicionar o adicional de insalubridade
-    temp_salario = temp_salario + temp_salario * adicionalInsalubridade;
+    salario = salario + salario * adicionalInsalubridade;
     // Por último, somar o adicional por filho do funcionário.
-    temp_salario = temp_salario + 100.0 * get_qtdFilhos();
+    salario = salario + 100.0 * get_qtdFilhos();
 
-    return temp_salario;
+    return salario;
 }
 float Asg::calcularRecisao(Data desligamento)
 {
-    /*
-    O cálculo da rescisão (demissão) deve ser feita da seguinte forma:
+    // O funcionário ganha um salário base por ano trabalhado.
+    
+    float salario_base = stof(get_salario());
 
-    1. O funcionário ganha um salário base por ano trabalhado.
-    2. O tempo de trabalho será calculado em subtraindo os elementos da struct
-    Data considerando a data de ingresso (classe Funcionario) e data de
-    desligamento (passado como parâmetro da função calculaRecisão.
-    3. A dica é converter os meses e dias para frações de ano.
-    */
+    // Calculando o tempo em dias totais de trabalho.
 
-    Data temp_data;
-    temp_data.ano = desligamento.ano - get_ingressoEmpresa().ano;
-    temp_data.mes = desligamento.mes - get_ingressoEmpresa().mes;
-    temp_data.dia = desligamento.dia - get_ingressoEmpresa().dia;
+    Data tempo_de_trabalho;
+    tempo_de_trabalho.ano = desligamento.ano - get_ingressoEmpresa().ano;
+    tempo_de_trabalho.mes = desligamento.mes - get_ingressoEmpresa().mes;
+    tempo_de_trabalho.dia = desligamento.dia - get_ingressoEmpresa().dia;
 
-    float temp_dias = (365.25)*temp_data.ano + (365.25/12)*temp_data.mes + (1.0)*temp_data.dia;
+    // Quantidade de dias em:
+    //   ano: 365.25/1.0;
+    //   mes: 365.25/12.0;
+    //   dia: 365.25/365.25.
 
-    float temp_salario = stof(get_salario());
+    float dias_trabalhados  =   (365.25/1.0)    * tempo_de_trabalho.ano
+                              + (365.25/12.0)   * tempo_de_trabalho.mes
+                              + (365.25/365.25) * tempo_de_trabalho.dia;
 
-    return (temp_dias/365.25) * temp_salario;
+    // Retornando a quantidade de anos de trabalho vezes o salario.
+
+    // Convertendo dias para anos:
+    //   dias_trabalhados/365.25
+
+    return (dias_trabalhados/365.25) * salario_base;
 }
