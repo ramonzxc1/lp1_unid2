@@ -55,7 +55,7 @@ float Asg::calcularSalario(int diasFaltas)
     float salario = stof(get_salario());
 
     // As faltas deverão ser descontadas do salário base.
-    salario = salario - diasFaltas * (salario / (365.25/12));
+    salario = salario - diasFaltas * (salario / (365.25/12.0)); // Um dia em um ano: 365.25/12.0
     // Após, adicionar o adicional de insalubridade
     salario = salario + salario * adicionalInsalubridade;
     // Por último, somar o adicional por filho do funcionário.

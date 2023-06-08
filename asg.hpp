@@ -20,8 +20,7 @@ class Asg: public Pessoa, public Funcionario
         void set_adicionalInsalubridade(float adicionalInsalubridade_);
 
         float calcularSalario(int diasFaltas);
-        float calcularRecisao(Data desligamento);
-		
+        float calcularRecisao(Data desligamento);	
 };
 
 #endif

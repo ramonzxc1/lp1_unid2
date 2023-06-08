@@ -50,27 +50,53 @@ void Vendedor::set_tipoVendedor(char tipoVendedor_)
 }
 float Vendedor::calcularSalario(int diasFaltas)
 {
-    /*
-    o cálculo do salário do Vendedor deverá ser feito da seguinte forma:
-    
-    1. As faltas deverão ser descontadas do salário base;
-    2. Após, adicionar uma gratificação que dependerá do tipo de vendedor (25%
-    para vendedores A, 10% para vendedores B e 5% para vendedores C)
-    3. Por último, somar o adicional por filho do funcionário
-    */
-    return 0.0;
+    // Salario base.
+
+    float salario = stof(get_salario());
+
+    // As faltas deverão ser descontadas do salário base.
+    salario = salario - diasFaltas * (salario / (365.25/12.0)); // Um dia em um ano: 365.25/12.0
+    // Após, adicionar uma gratificação que dependerá do tipo de vendedor (25%
+    // para vendedores A, 10% para vendedores B e 5% para vendedores C)
+    if(this->tipoVendedor == 'A')
+        salario = salario + salario * 0.25;
+    else if(this->tipoVendedor == 'B')
+        salario = salario + salario * 0.10;
+    else if(this->tipoVendedor == 'C')
+        salario = salario + salario * 0.05;
+
+    // Por último, somar o adicional por filho do funcionário.
+    salario = salario + 100.0 * get_qtdFilhos();
+
+    return salario;
 
 }
 float Vendedor::calcularRecisao(Data desligamento)
 {
-    /*
-    O cálculo da rescisão (demissão) deve ser feita da seguinte forma:
+    // O funcionário ganha um salário base por ano trabalhado.
     
-    1. O funcionário ganha um salário base por ano trabalhado.
-    2. O tempo de trabalho será calculado subtraindo os elementos da struct Data
-    considerando a data de ingresso (classe Funcionario) e data de desligamento
-    (passado como parâmetro da função calculaRecisão.
-    3. A dica é converter os meses e dias para frações de ano.
-    */
-    return 0.0;
+    float salario_base = stof(get_salario());
+
+    // Calculando o tempo em dias totais de trabalho.
+
+    Data tempo_de_trabalho;
+    tempo_de_trabalho.ano = desligamento.ano - get_ingressoEmpresa().ano;
+    tempo_de_trabalho.mes = desligamento.mes - get_ingressoEmpresa().mes;
+    tempo_de_trabalho.dia = desligamento.dia - get_ingressoEmpresa().dia;
+
+    // Quantidade de dias em:
+    //   ano: 365.25/1.0;
+    //   mes: 365.25/12.0;
+    //   dia: 365.25/365.25.
+
+    float dias_trabalhados  =   (365.25/1.0)    * tempo_de_trabalho.ano
+                              + (365.25/12.0)   * tempo_de_trabalho.mes
+                              + (365.25/365.25) * tempo_de_trabalho.dia;
+
+    // Retornando a quantidade de anos de trabalho vezes o salario.
+
+    // Convertendo dias para anos:
+    //   dias_trabalhados/365.25
+
+    return (dias_trabalhados/365.25) * salario_base;
 }
