@@ -11,7 +11,7 @@ class Pessoa
 		std::string cpf;
 		Data dataNascimento;
 		Endereco enderecoPessoal;
-		std::string estadoCivil; // possíveis: solteiro(a), casado(a), viuvo(a), divorciado(a))
+		std::string estadoCivil; // solteiro(a), casado(a), viuvo(a), divorciado(a)
 		int qtdFilhos;
 
 	public:

@@ -41,14 +41,14 @@ class Empresa
         void carregarAsg();
         void carregarVendedor();
         void carregarGerente();
-        void carregarDono();
+        void carregaDono();
         void imprimeAsgs();
         void imprimeVendedores();
         void imprimeGerentes();
         void imprimeDono();
         void buscaFuncionario(int matricula_);
         void calculaSalarioFuncionario(int matricula_); 
-        void calculaTodosOsSalarios();
+        void calculaTodoOsSalarios();
         void calcularRecisao(int matricula_, Data desligamento_);
 };
 
