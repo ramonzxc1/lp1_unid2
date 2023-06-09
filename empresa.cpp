@@ -514,23 +514,172 @@ void Empresa::imprimeAsgs()
 }
 void Empresa::imprimeVendedores()
 {
+    int contador = 0;
     // Imprime todas os atributos de todos os vendedores;
+    for(auto i : this->vendedores)
+    {
+        cout << "##############################################\n";
+        cout << "ASG N°: ";
+        cout << contador << endl;
+        cout << "##### DADOS PESSOAIS #####\n";
+        cout << i.get_nome() << endl;
+        cout << i.get_cpf() << endl;
+        cout << i.get_qtdFilhos() << endl;
+        cout << i.get_estadoCivil() << endl;
+        cout << "***** Endereço (cidade, cep, bairro, rua e numero) ****\n";
+        cout << i.get_enderecoPessoal().cidade << endl;
+        cout << i.get_enderecoPessoal().cep << endl;
+        cout << i.get_enderecoPessoal().bairro << endl;
+        cout << i.get_enderecoPessoal().rua << endl;
+        cout << i.get_enderecoPessoal().numero << endl;
+        cout << "***** Data de nascimento (ano, mes, dia) ****\n";
+        cout << i.get_dataNascimento().ano << endl;
+        cout << i.get_dataNascimento().mes << endl;
+        cout << i.get_dataNascimento().dia << endl;
+        cout << "##### DADOS FUNCIONAIS #####\n";
+        cout << i.get_matricula() << endl;
+        cout << i.get_salario() << endl;
+        cout << i.get_tipoVendedor() << endl;
+        // cout << i.get_falta() << endl; // Tenho que adicionar este membro? qnt_faltas?
+        cout << "***** Data de ingresso (ano, mes, dia) ****\n";
+        cout << i.get_ingressoEmpresa().ano << endl;
+        cout << i.get_ingressoEmpresa().mes << endl;
+        cout << i.get_ingressoEmpresa().dia << endl;
+
+        contador++;
+    }
 }
 void Empresa::imprimeGerentes()
 {
+    int contador = 0;
     // Imprime todas os atributos de todos os gerentes;
+    for(auto i : this->gerentes)
+    {
+        cout << "##############################################\n";
+        cout << "ASG N°: ";
+        cout << contador << endl;
+        cout << "##### DADOS PESSOAIS #####\n";
+        cout << i.get_nome() << endl;
+        cout << i.get_cpf() << endl;
+        cout << i.get_qtdFilhos() << endl;
+        cout << i.get_estadoCivil() << endl;
+        cout << "***** Endereço (cidade, cep, bairro, rua e numero) ****\n";
+        cout << i.get_enderecoPessoal().cidade << endl;
+        cout << i.get_enderecoPessoal().cep << endl;
+        cout << i.get_enderecoPessoal().bairro << endl;
+        cout << i.get_enderecoPessoal().rua << endl;
+        cout << i.get_enderecoPessoal().numero << endl;
+        cout << "***** Data de nascimento (ano, mes, dia) ****\n";
+        cout << i.get_dataNascimento().ano << endl;
+        cout << i.get_dataNascimento().mes << endl;
+        cout << i.get_dataNascimento().dia << endl;
+        cout << "##### DADOS FUNCIONAIS #####\n";
+        cout << i.get_matricula() << endl;
+        cout << i.get_salario() << endl;
+        cout << i.get_participacaoLucros() << endl;
+        // cout << i.get_falta() << endl; // Tenho que adicionar este membro? qnt_faltas?
+        cout << "***** Data de ingresso (ano, mes, dia) ****\n";
+        cout << i.get_ingressoEmpresa().ano << endl;
+        cout << i.get_ingressoEmpresa().mes << endl;
+        cout << i.get_ingressoEmpresa().dia << endl;
+
+        contador++;
+    }
 }
 void Empresa::imprimeDono()
 {
     // Imprime todas os atributos de dono
+    cout << "##############################################\n";
+    cout << "##### DADOS PESSOAIS #####\n";
+    cout << this->dono.get_nome() << endl;
+    cout << this->dono.get_cpf() << endl;
+    cout << this->dono.get_qtdFilhos() << endl;
+    cout << this->dono.get_estadoCivil() << endl;
+    //cout << "***** Endereço (cidade, cep, bairro, rua e numero) ****\n";
+    cout << this->dono.get_enderecoPessoal().cidade << endl;
+    cout << this->dono.get_enderecoPessoal().cep << endl;
+    cout << this->dono.get_enderecoPessoal().bairro << endl;
+    cout << this->dono.get_enderecoPessoal().rua << endl;
+    cout << this->dono.get_enderecoPessoal().numero << endl;
+    //cout << "***** Data de nascimento (ano, mes, dia) ****\n";
+    cout << this->dono.get_dataNascimento().ano << endl;
+    cout << this->dono.get_dataNascimento().mes << endl;
+    cout << this->dono.get_dataNascimento().dia << endl;
+    cout << "##############################################\n";
 }
 void Empresa::buscaFuncionario(int matricula_)
 {
-    // Caso não encontre deve imprimir a mensagem "Funcionário não encontrado no sistema”
+    if(asgs.size() > 0)
+    {
+        for(auto i : asgs)
+        {
+            if(stoi(i.get_matricula()) == matricula_)
+            {
+                cout << "ASG encontrado com esta matricula!\n";
+                return;
+            }
+        }
+    }
+    if(vendedores.size() > 0)
+    {
+        for(auto i : vendedores)
+        {
+            if(stoi(i.get_matricula()) == matricula_)
+            {
+                cout << "Vendedor encontrado com esta matricula!\n";
+                return;
+            }
+        }
+    }
+    if(gerentes.size() > 0)
+    {
+        for(auto i : gerentes)
+        {
+            if(stoi(i.get_matricula()) == matricula_)
+            {
+                cout << "Gerente encontrado com esta matricula!\n";
+                return;
+            }
+        }
+    }
+    cout << "Funcionario nao encontrado com esta matricula no sistema.\n";
 }
 void Empresa::calculaSalarioFuncionario(int matricula_)
 {
-    // Caso não encontre deve imprimir a mensagem "Funcionário não encontrado no sistema”
+    if(asgs.size() > 0)
+    {
+        for(auto i : asgs)
+        {
+            if(stoi(i.get_matricula()) == matricula_)
+            {
+                cout << "Salario do ASG: " << i.get_salario() << endl;
+                return;
+            }
+        }
+    }
+    if(vendedores.size() > 0)
+    {
+        for(auto i : vendedores)
+        {
+            if(stoi(i.get_matricula()) == matricula_)
+            {
+                cout << "Salario do vendedor: " << i.get_salario() << endl;
+                return;
+            }
+        }
+    }
+    if(gerentes.size() > 0)
+    {
+        for(auto i : gerentes)
+        {
+            if(stoi(i.get_matricula()) == matricula_)
+            {
+                cout << "Salario do gerente: " << i.get_salario() << endl;
+                return;
+            }
+        }
+    }
+    cout << "Funcionario nao encontrado com esta matricula no sistema.\n";
 }
 void Empresa::calculaTodoOsSalarios()
 {
@@ -541,6 +690,35 @@ void Empresa::calculaTodoOsSalarios()
     GERENTES e, por fim, a soma de todos os salários. Esses resultados
     também devem ser mostrados no console.
     */
+
+    float total_salario_asg = 0.0;
+    float total_salario_vendedor = 0.0;
+    float total_salario_gerente = 0.0;
+
+    cout << "##############################################\n";
+
+    for(auto i : this->asgs)
+    {
+        cout << i.get_nome() << "; " << "ASG; " << i.get_salario() << endl;
+        total_salario_asg += stof(i.get_salario());
+    }
+    for(auto i : this->vendedores)
+    {
+        cout << i.get_nome() << "; " << "VENDEDOR; " << i.get_salario() << endl;
+        total_salario_vendedor += stof(i.get_salario());
+    }
+    for(auto i : this->gerentes)
+    {
+        cout << i.get_nome() << "; " << "GERENTE; " << i.get_salario() << endl;
+        total_salario_gerente += stof(i.get_salario());
+    }
+
+    cout << endl;
+    cout << "Salario total dos ASGs: " << total_salario_asg << endl;
+    cout << "Salario total dos vendedores: " << total_salario_vendedor << endl;
+    cout << "Salario total dos gerentes: " << total_salario_gerente << endl;
+    cout << endl;
+    cout << "Salario total de todos os funcionarios: " << total_salario_asg + total_salario_vendedor + total_salario_gerente << endl;
 }
 void Empresa::calcularRecisao(int matricula_, Data desligamento_)
 {
@@ -549,4 +727,39 @@ void Empresa::calcularRecisao(int matricula_, Data desligamento_)
     rescisão de um funcionário.  Caso não encontre deve imprimir a mensagem
     "Funcionário não encontrado no sistema”
     */
+
+    if(asgs.size() > 0)
+    {
+        for(auto i : asgs)
+        {
+            if(stoi(i.get_matricula()) == matricula_)
+            {
+                cout << "Valor da recisao do ASG: " << i.calcularRecisao(desligamento_) << endl;
+                return;
+            }
+        }
+    }
+    if(vendedores.size() > 0)
+    {
+        for(auto i : vendedores)
+        {
+            if(stoi(i.get_matricula()) == matricula_)
+            {
+                cout << "Valor da recisao do vendedor: " << i.calcularRecisao(desligamento_) << endl;
+                return;
+            }
+        }
+    }
+    if(gerentes.size() > 0)
+    {
+        for(auto i : gerentes)
+        {
+            if(stoi(i.get_matricula()) == matricula_)
+            {
+                cout << "Valor da recisao do gerente: " << i.calcularRecisao(desligamento_) << endl;
+                return;
+            }
+        }
+    }
+    cout << "Funcionario nao encontrado com esta matricula no sistema.\n";
 }
