@@ -1,0 +1,17 @@
+##############################################
+Pedro de Araujo; ASG; 1320
+Jorge Linhares; ASG; 1320
+Antonio Augusto de Souza Filho; ASG; 1320
+Luiz de Souza; VENDEDOR; 1500
+Suziane Maria; VENDEDOR; 1500
+Alexandra Gonçalve Dias; VENDEDOR; 1500
+Guilherme Borba Dias; VENDEDOR; 1500
+Paulo Herculano de Souza; VENDEDOR; 1500
+Gustavo Luiz de Souza; GERENTE; 1500
+
+Salario total dos ASGs: 3960
+Salario total dos vendedores: 7500
+Salario total dos gerentes: 1500
+
+Salario total de todos os funcionarios: 12960
+##############################################

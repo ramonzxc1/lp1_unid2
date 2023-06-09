@@ -109,8 +109,6 @@ void Empresa::carregarFuncoes()
     arquivo chamado funcoes.txt e chamar cada uma das funções presentes nas
     linhas desse arquivo até a última linha.
     */
-    int matricula;
-    Data desligamento;
 
     fstream arquivo;
     arquivo.open("arquivos para leitura/funcoes.txt", ios::in);
