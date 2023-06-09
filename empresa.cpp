@@ -695,30 +695,37 @@ void Empresa::calculaTodoOsSalarios()
     float total_salario_vendedor = 0.0;
     float total_salario_gerente = 0.0;
 
-    cout << "##############################################\n";
+    fstream arquivo;
+
+    arquivo.open("arquivos para escrita/calculaTodoOsSalarios.txt", ios::out);
+
+    arquivo << "##############################################\n";
 
     for(auto i : this->asgs)
     {
-        cout << i.get_nome() << "; " << "ASG; " << i.get_salario() << endl;
+        arquivo << i.get_nome() << "; " << "ASG; " << i.get_salario() << endl;
         total_salario_asg += stof(i.get_salario());
     }
     for(auto i : this->vendedores)
     {
-        cout << i.get_nome() << "; " << "VENDEDOR; " << i.get_salario() << endl;
+        arquivo << i.get_nome() << "; " << "VENDEDOR; " << i.get_salario() << endl;
         total_salario_vendedor += stof(i.get_salario());
     }
     for(auto i : this->gerentes)
     {
-        cout << i.get_nome() << "; " << "GERENTE; " << i.get_salario() << endl;
+        arquivo << i.get_nome() << "; " << "GERENTE; " << i.get_salario() << endl;
         total_salario_gerente += stof(i.get_salario());
     }
 
-    cout << endl;
-    cout << "Salario total dos ASGs: " << total_salario_asg << endl;
-    cout << "Salario total dos vendedores: " << total_salario_vendedor << endl;
-    cout << "Salario total dos gerentes: " << total_salario_gerente << endl;
-    cout << endl;
-    cout << "Salario total de todos os funcionarios: " << total_salario_asg + total_salario_vendedor + total_salario_gerente << endl;
+    arquivo << endl;
+    arquivo << "Salario total dos ASGs: " << total_salario_asg << endl;
+    arquivo << "Salario total dos vendedores: " << total_salario_vendedor << endl;
+    arquivo << "Salario total dos gerentes: " << total_salario_gerente << endl;
+    arquivo << endl;
+    arquivo << "Salario total de todos os funcionarios: " << total_salario_asg + total_salario_vendedor + total_salario_gerente << endl;
+
+    arquivo << "##############################################\n";
+    arquivo.close();
 }
 void Empresa::calcularRecisao(int matricula_, Data desligamento_)
 {
