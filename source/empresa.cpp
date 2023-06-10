@@ -202,7 +202,6 @@ void Empresa::carregarAsg()
     {
         getline(arquivo, linha); // Ignora linha 2.
         getline(arquivo, linha); // Ignora linha 3.
-
         getline(arquivo, linha);
         temp_asg.set_nome(linha);
         getline(arquivo, linha);

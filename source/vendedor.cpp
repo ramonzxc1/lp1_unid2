@@ -48,55 +48,44 @@ void Vendedor::set_tipoVendedor(char tipoVendedor_)
 {
     this->tipoVendedor = tipoVendedor_;
 }
-void Vendedor::calcularSalario(int diasFaltas)
+float Vendedor::calcularSalario(int diasFaltas)
 {
-    // Salario base.
+    float salario_base = stof(get_salario());
 
-    float salario = stof(get_salario());
+    // Tempo de trabalho em dias.
+    float tempo_de_trabalho = ((float)diasFaltas) / 30.4375; // Um mes tem 365.25/12.0 dias, i.e., 30.4375 dias
 
+    float desconto_salario = tempo_de_trabalho * salario_base;
+
+    float salario_calculado;
     // As faltas deverão ser descontadas do salário base.
-    salario = salario - diasFaltas * (salario / (365.25/12.0)); // Um dia em um ano: 365.25/12.0
-    // Após, adicionar uma gratificação que dependerá do tipo de vendedor (25%
-    // para vendedores A, 10% para vendedores B e 5% para vendedores C)
+    salario_calculado = salario_base - desconto_salario;
+    // Após, adicionar uma gratificação que dependerá do tipo de vendedor
+    // (25% para vendedores A, 10% para vendedores B e 5% para vendedores C)
     if(this->tipoVendedor == 'A')
-        salario = salario + salario * 0.25;
+        salario_calculado += salario_calculado * 0.25;
     else if(this->tipoVendedor == 'B')
-        salario = salario + salario * 0.10;
+        salario_calculado += salario_calculado * 0.10;
     else if(this->tipoVendedor == 'C')
-        salario = salario + salario * 0.05;
-
+        salario_calculado += salario_calculado * 0.05;
     // Por último, somar o adicional por filho do funcionário.
-    salario = salario + 100.0 * get_qtdFilhos();
-
-    this->set_salario(to_string(salario));
-
+    salario_calculado += 100.0 * get_qtdFilhos(); // Cada filho incrementa 100.0 reais.
+    
+    // Retornando o salario calculado.
+    return salario_calculado;
 }
 float Vendedor::calcularRecisao(Data desligamento)
 {
-    // O funcionário ganha um salário base por ano trabalhado.
-    
     float salario_base = stof(get_salario());
 
-    // Calculando o tempo em dias totais de trabalho.
+    float anos_trabalhados;
+    // (ano/ano) * (ano/1) == ano/1 == ano
+    anos_trabalhados  = (1.0/1.0) * (desligamento.ano - get_ingressoEmpresa().ano);
+    // (ano/mes) * (mes/1) == ano/1 == ano
+    anos_trabalhados += (1.0/12.0) * (desligamento.mes - get_ingressoEmpresa().mes);
+    // (ano/dia) * (dia/1) == ano/1 == ano
+    anos_trabalhados += (1.0/365.25) * (desligamento.dia - get_ingressoEmpresa().dia);
 
-    Data tempo_de_trabalho;
-    tempo_de_trabalho.ano = desligamento.ano - get_ingressoEmpresa().ano;
-    tempo_de_trabalho.mes = desligamento.mes - get_ingressoEmpresa().mes;
-    tempo_de_trabalho.dia = desligamento.dia - get_ingressoEmpresa().dia;
-
-    // Quantidade de dias em:
-    //   ano: 365.25/1.0;
-    //   mes: 365.25/12.0;
-    //   dia: 365.25/365.25.
-
-    float dias_trabalhados  =   (365.25/1.0)    * tempo_de_trabalho.ano
-                              + (365.25/12.0)   * tempo_de_trabalho.mes
-                              + (365.25/365.25) * tempo_de_trabalho.dia;
-
-    // Retornando a quantidade de anos de trabalho vezes o salario.
-
-    // Convertendo dias para anos:
-    //   dias_trabalhados/365.25
-
-    return (dias_trabalhados/365.25) * salario_base;
+    // Retornando o salario base por ano trabalhado.
+    return anos_trabalhados * salario_base;
 }

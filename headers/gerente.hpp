@@ -21,7 +21,7 @@ class Gerente: public Pessoa, public Funcionario
         float get_participacaoLucros();
         void set_participacaoLucros(float participacaoLucros_);
 
-        void calcularSalario(int diasFaltas);
+        float calcularSalario(int diasFaltas);
 		float calcularRecisao(Data desligamento);
 };
 
