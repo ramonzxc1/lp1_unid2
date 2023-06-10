@@ -517,7 +517,7 @@ void Empresa::imprimeVendedores()
     for(auto i : this->vendedores)
     {
         cout << "##############################################\n";
-        cout << "ASG N°: ";
+        cout << "VENDEDOR N°: ";
         cout << contador << endl;
         cout << "##### DADOS PESSOAIS #####\n";
         cout << i.get_nome() << endl;
@@ -554,7 +554,7 @@ void Empresa::imprimeGerentes()
     for(auto i : this->gerentes)
     {
         cout << "##############################################\n";
-        cout << "ASG N°: ";
+        cout << "GERENTE N°: ";
         cout << contador << endl;
         cout << "##### DADOS PESSOAIS #####\n";
         cout << i.get_nome() << endl;
