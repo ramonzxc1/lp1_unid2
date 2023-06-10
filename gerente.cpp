@@ -50,7 +50,7 @@ void Gerente::set_participacaoLucros(float participacaoLucros_)
 {
     this->participacaoLucros = participacaoLucros_;
 }
-float Gerente::calcularSalario(int diasFaltas)
+void Gerente::calcularSalario(int diasFaltas)
 {
     // Salario base.
 
@@ -63,7 +63,7 @@ float Gerente::calcularSalario(int diasFaltas)
     // Por último, somar o adicional por filho do funcionário.
     salario = salario + 100.0 * get_qtdFilhos();
 
-    return salario;
+    this->set_salario(to_string(salario));
 }
 float Gerente::calcularRecisao(Data desligamento)
 {

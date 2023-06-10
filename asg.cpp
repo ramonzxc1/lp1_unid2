@@ -48,7 +48,7 @@ void Asg::set_adicionalInsalubridade(float adicionalInsalubridade_)
 {
     this->adicionalInsalubridade = adicionalInsalubridade_;
 }
-float Asg::calcularSalario(int diasFaltas)
+void Asg::calcularSalario(int diasFaltas)
 {  
     // Salario base.
 
@@ -61,7 +61,7 @@ float Asg::calcularSalario(int diasFaltas)
     // Por último, somar o adicional por filho do funcionário.
     salario = salario + 100.0 * get_qtdFilhos();
 
-    return salario;
+    this->set_salario(to_string(salario));
 }
 float Asg::calcularRecisao(Data desligamento)
 {

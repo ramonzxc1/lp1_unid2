@@ -48,7 +48,7 @@ void Vendedor::set_tipoVendedor(char tipoVendedor_)
 {
     this->tipoVendedor = tipoVendedor_;
 }
-float Vendedor::calcularSalario(int diasFaltas)
+void Vendedor::calcularSalario(int diasFaltas)
 {
     // Salario base.
 
@@ -68,7 +68,7 @@ float Vendedor::calcularSalario(int diasFaltas)
     // Por último, somar o adicional por filho do funcionário.
     salario = salario + 100.0 * get_qtdFilhos();
 
-    return salario;
+    this->set_salario(to_string(salario));
 
 }
 float Vendedor::calcularRecisao(Data desligamento)

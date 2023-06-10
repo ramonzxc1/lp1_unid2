@@ -21,7 +21,7 @@ class Vendedor: public Pessoa, public Funcionario
         char get_tipoVendedor();
         void set_tipoVendedor(char tipoVendedor_);
 
-        float calcularSalario(int diasFaltas);
+        void calcularSalario(int diasFaltas);
 		float calcularRecisao(Data desligamento);
 
 

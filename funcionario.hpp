@@ -19,7 +19,7 @@ class Funcionario
 		void set_matricula(std::string matricula_);
 		void set_ingressoEmpresa(Data ingressoEmpresa_);
 
-		virtual float calcularSalario(int diasFaltas) = 0;
+		virtual void calcularSalario(int diasFaltas) = 0;
 		virtual float calcularRecisao(Data desligamento) = 0;
 };
 
