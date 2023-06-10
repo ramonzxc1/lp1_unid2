@@ -1,33 +1,34 @@
-#include "asg.hpp"
+#include "../headers/gerente.hpp"
 
 using namespace std;
 
-Asg::Asg()
+Gerente::Gerente()
 {
-    Data data_empty;
-    data_empty.ano = 0;
-    data_empty.mes = 0;
-    data_empty.dia = 0;
-    Endereco endereco_empty;
-    endereco_empty.cidade = "";
-    endereco_empty.bairro = "";
-    endereco_empty.rua = "";
-    endereco_empty.cep = "";
-    endereco_empty.numero = 0;
+    Data temp_data;
+    temp_data.ano = 0;
+    temp_data.mes = 0;
+    temp_data.dia = 0;
+    Endereco temp_endereco;
+    temp_endereco.cidade = "";
+    temp_endereco.bairro = "";
+    temp_endereco.rua = "";
+    temp_endereco.cep = "";
+    temp_endereco.numero = 0;
     this->set_nome("");
     this->set_cpf("");
-    this->set_dataNascimento(data_empty);
-    this->set_enderecoPessoal(endereco_empty);
+    this->set_dataNascimento(temp_data);
+    this->set_enderecoPessoal(temp_endereco);
     this->set_estadoCivil("");
     this->set_qtdFilhos(0);
     this->set_salario("");
     this->set_matricula("");
-    this->set_ingressoEmpresa(data_empty);
-    this->adicionalInsalubridade = 0.0;
+    this->set_ingressoEmpresa(temp_data);
+    this->participacaoLucros = 0.0;
 }
-Asg::Asg(string nome_, string cpf_, Data dataNascimento_, Endereco enderecoPessoal_, 
-         string estadoCivil_, int qtdFilhos_, string salario_, string matricula_,
-         Data ingressoEmpresa_, float adicionalInsalubridade_)
+Gerente::Gerente(std::string nome_, std::string cpf_, Data dataNascimento_, 
+                 Endereco enderecoPessoal_, std::string estadoCivil_, 
+                 int qtdFilhos_, std::string salario_, std::string matricula_,
+                 Data ingressoEmpresa_, float participacaoLucros_)
 {
     this->set_nome(nome_);
     this->set_cpf(cpf_);
@@ -38,32 +39,33 @@ Asg::Asg(string nome_, string cpf_, Data dataNascimento_, Endereco enderecoPesso
     this->set_salario(salario_);
     this->set_matricula(matricula_);
     this->set_ingressoEmpresa(ingressoEmpresa_);
-    this->adicionalInsalubridade = adicionalInsalubridade_;
+    this->participacaoLucros = participacaoLucros_;
 }
-float Asg::get_adicionalInsalubridade()
+
+float Gerente::get_participacaoLucros()
 {
-    return this->adicionalInsalubridade;
+    return this->participacaoLucros;
 }
-void Asg::set_adicionalInsalubridade(float adicionalInsalubridade_)
+void Gerente::set_participacaoLucros(float participacaoLucros_)
 {
-    this->adicionalInsalubridade = adicionalInsalubridade_;
+    this->participacaoLucros = participacaoLucros_;
 }
-void Asg::calcularSalario(int diasFaltas)
-{  
+void Gerente::calcularSalario(int diasFaltas)
+{
     // Salario base.
 
     float salario = stof(get_salario());
 
     // As faltas deverão ser descontadas do salário base.
     salario = salario - diasFaltas * (salario / (365.25/12.0)); // Um dia em um ano: 365.25/12.0
-    // Após, adicionar o adicional de insalubridade
-    salario = salario + salario * adicionalInsalubridade;
+    // Após, some a participação no lucros (atributo da própria classe)
+    salario = salario + this->participacaoLucros;
     // Por último, somar o adicional por filho do funcionário.
     salario = salario + 100.0 * get_qtdFilhos();
 
     this->set_salario(to_string(salario));
 }
-float Asg::calcularRecisao(Data desligamento)
+float Gerente::calcularRecisao(Data desligamento)
 {
     // O funcionário ganha um salário base por ano trabalhado.
     
