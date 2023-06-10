@@ -649,7 +649,7 @@ void Empresa::calculaSalarioFuncionario(int matricula_)
         {
             if(stoi(i.get_matricula()) == matricula_)
             {
-                cout << "Salario do ASG: " << i.get_salario() << endl;
+                cout << "Salario do ASG: " << i.get_salario() << endl; // como vou chamar calcularSalario se eu nao tenho os dias de faltas?
                 return;
             }
         }
@@ -660,7 +660,7 @@ void Empresa::calculaSalarioFuncionario(int matricula_)
         {
             if(stoi(i.get_matricula()) == matricula_)
             {
-                cout << "Salario do vendedor: " << i.get_salario() << endl;
+                cout << "Salario do vendedor: " << i.get_salario() << endl;// como vou chamar calcularSalario se eu nao tenho os dias de faltas?
                 return;
             }
         }
@@ -671,7 +671,7 @@ void Empresa::calculaSalarioFuncionario(int matricula_)
         {
             if(stoi(i.get_matricula()) == matricula_)
             {
-                cout << "Salario do gerente: " << i.get_salario() << endl;
+                cout << "Salario do gerente: " << i.get_salario() << endl;// como vou chamar calcularSalario se eu nao tenho os dias de faltas?
                 return;
             }
         }
@@ -700,18 +700,18 @@ void Empresa::calculaTodoOsSalarios()
 
     for(auto i : this->asgs)
     {
-        arquivo << i.get_nome() << "; " << "ASG; " << i.get_salario() << endl;
-        total_salario_asg += stof(i.get_salario());
+        arquivo << i.get_nome() << "; " << "ASG; " << i.get_salario() << endl; // como vou chamar calcularSalario se eu nao tenho os dias de faltas?
+        total_salario_asg += stof(i.get_salario());// como vou chamar calcularSalario se eu nao tenho os dias de faltas?
     }
     for(auto i : this->vendedores)
     {
-        arquivo << i.get_nome() << "; " << "VENDEDOR; " << i.get_salario() << endl;
-        total_salario_vendedor += stof(i.get_salario());
+        arquivo << i.get_nome() << "; " << "VENDEDOR; " << i.get_salario() << endl; // como vou chamar calcularSalario se eu nao tenho os dias de faltas?
+        total_salario_vendedor += stof(i.get_salario());// como vou chamar calcularSalario se eu nao tenho os dias de faltas?
     }
     for(auto i : this->gerentes)
     {
-        arquivo << i.get_nome() << "; " << "GERENTE; " << i.get_salario() << endl;
-        total_salario_gerente += stof(i.get_salario());
+        arquivo << i.get_nome() << "; " << "GERENTE; " << i.get_salario() << endl; // como vou chamar calcularSalario se eu nao tenho os dias de faltas?
+        total_salario_gerente += stof(i.get_salario()); // como vou chamar calcularSalario se eu nao tenho os dias de faltas?
     }
 
     arquivo << endl;

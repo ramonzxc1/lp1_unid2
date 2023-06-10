@@ -1,1 +1,7 @@
-Parei em empresa.CPP
+. falta terminar empresa.cpp
+
+. lembrar de que mudei void calcularRecisao e calcularSalario para float... preciso ajeitar isso nas funcoes de impressao de empresa.cpp
+
+. ver como fazer para ler funcoes.txt, ja que matricula, ano, mes e dia vao bugar quando transformar em inteiro com stoi
+
+
