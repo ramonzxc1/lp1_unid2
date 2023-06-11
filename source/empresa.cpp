@@ -246,7 +246,7 @@ void Empresa::carregarAsg()
         getline(arquivo, linha);
         temp_asg.set_adicionalInsalubridade(stof(linha));
         getline(arquivo, linha);
-        temp_asg.calcularSalario(stoi(linha));
+        temp_asg.calcularSalario(stoi(linha)); // resulta em um float
         
         getline(arquivo, linha); // Ignora linha.
 

@@ -53,7 +53,7 @@ float Asg::calcularSalario(int diasFaltas)
     float salario_base = stof(get_salario());
 
     // Tempo de trabalho em dias.
-    float tempo_de_trabalho = ((float)diasFaltas) / 30.4375; // Um mes tem 365.25/12.0 dias, i.e., 30.4375 dias
+    float tempo_de_trabalho = diasFaltas / 30; // Um mes tem 30 dias
     
     float desconto_salario = tempo_de_trabalho * salario_base;
 
