@@ -46,10 +46,10 @@ class Empresa
         void imprimeVendedores();
         void imprimeGerentes();
         void imprimeDono();
-        void buscaFuncionario(int matricula_);
-        void calculaSalarioFuncionario(int matricula_); 
+        bool buscaFuncionario(std::string matricula_);
+        void calculaSalarioFuncionario(std::string matricula_); 
         void calculaTodoOsSalarios();
-        void calcularRecisao(int matricula_, Data desligamento_);
+        void calcularRecisao(std::string matricula_, Data desligamento_);
 };
 
 #endif

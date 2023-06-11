@@ -124,43 +124,36 @@ void Empresa::carregarFuncoes()
         else if(linha == "imprimeVendedores()") this->imprimeVendedores();
         else if(linha == "imprimeGerentes()")   this->imprimeGerentes();
         else if(linha == "imprimeDono()")       this->imprimeDono();
-        /*
-        // Como saber qual funcionario e matricula devo buscar?
-        // "matricula" no .txt vai dar problema na hora de converter para inteiro com stoi.
         else if(linha == "buscaFuncionario()")
         {
             getline(arquivo, linha);
-            matricula = stoi(linha);
-            this->buscaFuncionario(matricula); 
+            this->buscaFuncionario(linha); 
         }
-        // Como saber qual funcionario e matricula devo calcular?
-        // "matricula" no .txt vai dar problema na hora de converter para inteiro com stoi.
         else if(linha == "calculaSalarioFuncionario()") 
         {
             getline(arquivo, linha);
-            matricula = stoi(linha);
-            this->calculaSalarioFuncionario(matricula);
+            this->calculaSalarioFuncionario(linha);
         }
-        */
-
         else if(linha == "calculaTodoOsSalarios()") this->calculaTodoOsSalarios();
-        
-        /*
-        // Como saber qual funcionario, matricula e data devo calcular?
-        // "matricula", "ano", "mes" e "dia" no .txt vao dar problema na hora de converter para inteiro com stoi.
         else if(linha == "calcularRecisao()")
         {
             getline(arquivo, linha);
-            matricula = stoi(linha);
-            getline(arquivo, linha);
-            desligamento.ano = stoi(linha);
-            getline(arquivo, linha);
-            desligamento.mes = stoi(linha);
-            getline(arquivo, linha);
-            desligamento.dia = stoi(linha);
-            this->calcularRecisao(matricula, desligamento);
+
+            if(buscaFuncionario(linha))
+            {
+                string temp_matricula = linha;
+                getline(arquivo, linha);
+                Data desligamento;
+                desligamento.ano = stoi(linha); // a string precisa ser de numeros no funcoes.txt
+                getline(arquivo, linha);
+                desligamento.mes = stoi(linha); // a string precisa ser de numeros no funcoes.txt
+                getline(arquivo, linha);
+                desligamento.dia = stoi(linha); // a string precisa ser de numeros no funcoes.txt
+                this->calcularRecisao(temp_matricula, desligamento);
+            }
+            else cout << "Funcionario nao encontrado com esta matricula no sistema.\n";
+
         }
-        */
     }
     arquivo.close();
 }
@@ -170,7 +163,6 @@ void Empresa::carregarEmpresa()
     Lê o arquivo “empresa.txt” e carrega todos os dados da
     empresa (apenas: nome, faturamento, cnpj)
     */
-
     fstream arquivo;
     arquivo.open("arquivos para leitura/empresa.txt", ios::in);
     string linha;
@@ -193,7 +185,6 @@ void Empresa::carregarAsg()
     Asg temp_asg;
     Endereco temp_endereco;
     Data temp_data;
-
 
     fstream arquivo;
     arquivo.open("arquivos para leitura/asg.txt", ios::in);
@@ -272,7 +263,6 @@ void Empresa::carregarVendedor()
     Vendedor temp_vendedor;
     Endereco temp_endereco;
     Data temp_data;
-
 
     fstream arquivo;
     arquivo.open("arquivos para leitura/vendedor.txt", ios::in);
@@ -428,7 +418,6 @@ void Empresa::carregaDono()
     Lê o arquivo “dono.txt” e carrega todos os dados desse
     arquivo em dono.
     */
-   
     Endereco temp_endereco;
     Data temp_data;
 
@@ -436,8 +425,8 @@ void Empresa::carregaDono()
     arquivo.open("arquivos para leitura/dono.txt", ios::in);
     string linha;
 
+    getline(arquivo, linha); // Ignora linha 1.
     getline(arquivo, linha); // Ignora linha 2.
-    getline(arquivo, linha); // Ignora linha 3.
 
     getline(arquivo, linha);
     dono.set_nome(linha);
@@ -604,16 +593,16 @@ void Empresa::imprimeDono()
     cout << this->dono.get_dataNascimento().dia << endl;
     cout << "##############################################\n";
 }
-void Empresa::buscaFuncionario(int matricula_)
+bool Empresa::buscaFuncionario(string matricula_)
 {
     if(asgs.size() > 0)
     {
         for(auto i : asgs)
         {
-            if(stoi(i.get_matricula()) == matricula_)
+            if(i.get_matricula() == matricula_)
             {
-                cout << "ASG encontrado com esta matricula!\n";
-                return;
+                //cout << "ASG encontrado com esta matricula!\n";
+                return true;
             }
         }
     }
@@ -621,10 +610,10 @@ void Empresa::buscaFuncionario(int matricula_)
     {
         for(auto i : vendedores)
         {
-            if(stoi(i.get_matricula()) == matricula_)
+            if(i.get_matricula() == matricula_)
             {
-                cout << "Vendedor encontrado com esta matricula!\n";
-                return;
+                //cout << "Vendedor encontrado com esta matricula!\n";
+                return true;
             }
         }
     }
@@ -632,22 +621,23 @@ void Empresa::buscaFuncionario(int matricula_)
     {
         for(auto i : gerentes)
         {
-            if(stoi(i.get_matricula()) == matricula_)
+            if(i.get_matricula() == matricula_)
             {
-                cout << "Gerente encontrado com esta matricula!\n";
-                return;
+                //cout << "Gerente encontrado com esta matricula!\n";
+                return true;
             }
         }
     }
-    cout << "Funcionario nao encontrado com esta matricula no sistema.\n";
+    //cout << "Funcionario nao encontrado com esta matricula no sistema.\n";
+    return false;
 }
-void Empresa::calculaSalarioFuncionario(int matricula_)
+void Empresa::calculaSalarioFuncionario(string matricula_)
 {
     if(asgs.size() > 0)
     {
         for(auto i : asgs)
         {
-            if(stoi(i.get_matricula()) == matricula_)
+            if(i.get_matricula() == matricula_)
             {
                 cout << "Salario do ASG: " << i.get_salario() << endl; // como vou chamar calcularSalario se eu nao tenho os dias de faltas?
                 return;
@@ -658,7 +648,7 @@ void Empresa::calculaSalarioFuncionario(int matricula_)
     {
         for(auto i : vendedores)
         {
-            if(stoi(i.get_matricula()) == matricula_)
+            if(i.get_matricula() == matricula_)
             {
                 cout << "Salario do vendedor: " << i.get_salario() << endl;// como vou chamar calcularSalario se eu nao tenho os dias de faltas?
                 return;
@@ -669,7 +659,7 @@ void Empresa::calculaSalarioFuncionario(int matricula_)
     {
         for(auto i : gerentes)
         {
-            if(stoi(i.get_matricula()) == matricula_)
+            if(i.get_matricula() == matricula_)
             {
                 cout << "Salario do gerente: " << i.get_salario() << endl;// como vou chamar calcularSalario se eu nao tenho os dias de faltas?
                 return;
@@ -724,7 +714,7 @@ void Empresa::calculaTodoOsSalarios()
     arquivo << "##############################################\n";
     arquivo.close();
 }
-void Empresa::calcularRecisao(int matricula_, Data desligamento_)
+void Empresa::calcularRecisao(string matricula_, Data desligamento_)
 {
     /*
     Calcula   o   valor   da
@@ -736,7 +726,7 @@ void Empresa::calcularRecisao(int matricula_, Data desligamento_)
     {
         for(auto i : asgs)
         {
-            if(stoi(i.get_matricula()) == matricula_)
+            if(i.get_matricula() == matricula_)
             {
                 cout << "Valor da recisao do ASG: " << i.calcularRecisao(desligamento_) << endl;
                 return;
@@ -747,7 +737,7 @@ void Empresa::calcularRecisao(int matricula_, Data desligamento_)
     {
         for(auto i : vendedores)
         {
-            if(stoi(i.get_matricula()) == matricula_)
+            if(i.get_matricula() == matricula_)
             {
                 cout << "Valor da recisao do vendedor: " << i.calcularRecisao(desligamento_) << endl;
                 return;
@@ -758,7 +748,7 @@ void Empresa::calcularRecisao(int matricula_, Data desligamento_)
     {
         for(auto i : gerentes)
         {
-            if(stoi(i.get_matricula()) == matricula_)
+            if(i.get_matricula() == matricula_)
             {
                 cout << "Valor da recisao do gerente: " << i.calcularRecisao(desligamento_) << endl;
                 return;
