@@ -403,7 +403,7 @@ void Empresa::carregarGerente()
         getline(arquivo, linha);
         temp_gerente.set_salario(linha);
         getline(arquivo, linha);
-        temp_gerente.set_participacaoLucros(stof(linha)); // Primeiro char da string linha.
+        temp_gerente.set_participacaoLucros(stof(linha));
         getline(arquivo, linha);
         temp_gerente.calcularSalario(stoi(linha));
         
