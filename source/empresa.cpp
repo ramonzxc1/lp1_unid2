@@ -645,7 +645,7 @@ void Empresa::calculaSalarioFuncionario(string matricula_, int diasFaltas_)
             if(i.get_matricula() == matricula_)
             {
                 //cout << "Salario do ASG: " << i.get_salario() << endl; // como vou chamar calcularSalario se eu nao tenho os dias de faltas?
-                cout << "Salario de " << i.get_nome() << ": " << i.calcularSalario(diasFaltas_) << endl;
+                cout << "Salario do ASG " << i.get_nome() << ": " << i.calcularSalario(diasFaltas_) << endl;
                 return;
             }
         }
@@ -657,7 +657,7 @@ void Empresa::calculaSalarioFuncionario(string matricula_, int diasFaltas_)
             if(i.get_matricula() == matricula_)
             {
                 //cout << "Salario do vendedor: " << i.get_salario() << endl;// como vou chamar calcularSalario se eu nao tenho os dias de faltas?
-                cout << "Salario do vendedor: " << i.calcularSalario(diasFaltas_) << endl;
+                cout << "Salario do VENDEDOR " << i.get_nome() << ": " << i.calcularSalario(diasFaltas_) << endl;
                 return;
             }
         }
@@ -669,7 +669,7 @@ void Empresa::calculaSalarioFuncionario(string matricula_, int diasFaltas_)
             if(i.get_matricula() == matricula_)
             {
                 //cout << "Salario do gerente: " << i.get_salario() << endl;// como vou chamar calcularSalario se eu nao tenho os dias de faltas?
-                cout << "Salario do gerente: " << i.calcularSalario(diasFaltas_) << endl;
+                cout << "Salario do GERENTE " << i.get_nome() << ": " << i.calcularSalario(diasFaltas_) << endl;
                 return;
             }
         }
@@ -736,7 +736,7 @@ void Empresa::calcularRecisao(string matricula_, Data desligamento_)
         {
             if(i.get_matricula() == matricula_)
             {
-                cout << "Valor da recisao do ASG: " << i.calcularRecisao(desligamento_) << endl;
+                cout << "Valor da recisao do ASG " << i.get_nome() << ": " << i.calcularRecisao(desligamento_) << endl;
                 return;
             }
         }
@@ -747,7 +747,7 @@ void Empresa::calcularRecisao(string matricula_, Data desligamento_)
         {
             if(i.get_matricula() == matricula_)
             {
-                cout << "Valor da recisao do vendedor: " << i.calcularRecisao(desligamento_) << endl;
+                cout << "Valor da recisao do VENDEDOR " << i.get_nome() << ": " << i.calcularRecisao(desligamento_) << endl;
                 return;
             }
         }
@@ -758,7 +758,7 @@ void Empresa::calcularRecisao(string matricula_, Data desligamento_)
         {
             if(i.get_matricula() == matricula_)
             {
-                cout << "Valor da recisao do gerente: " << i.calcularRecisao(desligamento_) << endl;
+                cout << "Valor da recisao do GERENTE " << i.get_nome() << ": " << i.calcularRecisao(desligamento_) << endl;
                 return;
             }
         }

@@ -84,7 +84,7 @@ float Vendedor::calcularRecisao(Data desligamento)
     // (ano/mes) * (mes/1) == ano/1 == ano
     anos_trabalhados += (1.0/12.0) * (desligamento.mes - get_ingressoEmpresa().mes);
     // (ano/dia) * (dia/1) == ano/1 == ano
-    anos_trabalhados += (1.0/365.0) * (desligamento.dia - get_ingressoEmpresa().dia);
+    anos_trabalhados += (1.0/365.25) * (desligamento.dia - get_ingressoEmpresa().dia);
 
     // Retornando o salario base por ano trabalhado.
     return anos_trabalhados * salario_base;

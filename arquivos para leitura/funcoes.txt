@@ -14,7 +14,7 @@ calculaSalarioFuncionario()
 10
 calculaTodoOsSalarios()
 calcularRecisao()
-mstricula
-ano
-mes
-dia
+72.102-0
+2023
+6
+13
