@@ -127,7 +127,10 @@ void Empresa::carregarFuncoes()
         else if(linha == "buscaFuncionario()")
         {
             getline(arquivo, linha);
-            this->buscaFuncionario(linha); 
+            if(this->buscaFuncionario(linha))
+                cout << "Funcionario encontrado!\n";
+            else
+                cout << "Funcionario nao encontrado!\n"; 
         }
         else if(linha == "calculaSalarioFuncionario()") 
         {
