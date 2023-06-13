@@ -47,7 +47,7 @@ class Empresa
         void imprimeGerentes();
         void imprimeDono();
         bool buscaFuncionario(std::string matricula_);
-        void calculaSalarioFuncionario(std::string matricula_); 
+        void calculaSalarioFuncionario(std::string matricula_, int diasFaltas_); 
         void calculaTodoOsSalarios();
         void calcularRecisao(std::string matricula_, Data desligamento_);
 };

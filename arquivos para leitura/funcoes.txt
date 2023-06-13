@@ -10,7 +10,8 @@ imprimeDono()
 buscaFuncionario()
 72.102-0
 calculaSalarioFuncionario()
-matricula
+72.102-0
+10
 calculaTodoOsSalarios()
 calcularRecisao()
 mstricula

@@ -135,7 +135,9 @@ void Empresa::carregarFuncoes()
         else if(linha == "calculaSalarioFuncionario()") 
         {
             getline(arquivo, linha);
-            this->calculaSalarioFuncionario(linha);
+            string linha_diasFaltas;
+            getline(arquivo, linha_diasFaltas);
+            this->calculaSalarioFuncionario(linha, stoi(linha_diasFaltas));
         }
         else if(linha == "calculaTodoOsSalarios()") this->calculaTodoOsSalarios();
         else if(linha == "calcularRecisao()")
@@ -634,7 +636,7 @@ bool Empresa::buscaFuncionario(string matricula_)
     //cout << "Funcionario nao encontrado com esta matricula no sistema.\n";
     return false;
 }
-void Empresa::calculaSalarioFuncionario(string matricula_)
+void Empresa::calculaSalarioFuncionario(string matricula_, int diasFaltas_)
 {
     if(asgs.size() > 0)
     {
@@ -642,7 +644,8 @@ void Empresa::calculaSalarioFuncionario(string matricula_)
         {
             if(i.get_matricula() == matricula_)
             {
-                cout << "Salario do ASG: " << i.get_salario() << endl; // como vou chamar calcularSalario se eu nao tenho os dias de faltas?
+                //cout << "Salario do ASG: " << i.get_salario() << endl; // como vou chamar calcularSalario se eu nao tenho os dias de faltas?
+                cout << "Salario de " << i.get_nome() << ": " << i.calcularSalario(diasFaltas_) << endl;
                 return;
             }
         }
@@ -653,7 +656,8 @@ void Empresa::calculaSalarioFuncionario(string matricula_)
         {
             if(i.get_matricula() == matricula_)
             {
-                cout << "Salario do vendedor: " << i.get_salario() << endl;// como vou chamar calcularSalario se eu nao tenho os dias de faltas?
+                //cout << "Salario do vendedor: " << i.get_salario() << endl;// como vou chamar calcularSalario se eu nao tenho os dias de faltas?
+                cout << "Salario do vendedor: " << i.calcularSalario(diasFaltas_) << endl;
                 return;
             }
         }
@@ -664,7 +668,8 @@ void Empresa::calculaSalarioFuncionario(string matricula_)
         {
             if(i.get_matricula() == matricula_)
             {
-                cout << "Salario do gerente: " << i.get_salario() << endl;// como vou chamar calcularSalario se eu nao tenho os dias de faltas?
+                //cout << "Salario do gerente: " << i.get_salario() << endl;// como vou chamar calcularSalario se eu nao tenho os dias de faltas?
+                cout << "Salario do gerente: " << i.calcularSalario(diasFaltas_) << endl;
                 return;
             }
         }

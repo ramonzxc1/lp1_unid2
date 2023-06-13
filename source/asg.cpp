@@ -51,12 +51,9 @@ void Asg::set_adicionalInsalubridade(float adicionalInsalubridade_)
 float Asg::calcularSalario(int diasFaltas)
 {  
     float salario_base = stof(get_salario());
-
     // Tempo de trabalho em dias.
-    float tempo_de_trabalho = diasFaltas / 31; // Para simplificar, um mes tem 31 dias, que eh o maximo que um funcionario pode faltar num mes.
-    
+    float tempo_de_trabalho = (float)diasFaltas / 31.0; // Para simplificar, um mes tem 31 dias, que eh o maximo que um funcionario pode faltar num mes.
     float desconto_salario = tempo_de_trabalho * salario_base;
-
     float salario_calculado;
     // As faltas deverão ser descontadas do salário base.
     salario_calculado = salario_base - desconto_salario;
@@ -64,7 +61,6 @@ float Asg::calcularSalario(int diasFaltas)
     salario_calculado += adicionalInsalubridade * salario_calculado;
     // Por último, somar o adicional por filho do funcionário.
     salario_calculado += 100.0 * get_qtdFilhos(); // Cada filho incrementa 100.0 reais.
-    
     // Retornando o salario calculado.
     return salario_calculado;
 }

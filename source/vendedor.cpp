@@ -53,7 +53,7 @@ float Vendedor::calcularSalario(int diasFaltas)
     float salario_base = stof(get_salario());
 
     // Tempo de trabalho em dias.
-    float tempo_de_trabalho = diasFaltas / 31; // Para simplificar, um mes tem 31 dias, que eh o maximo que um funcionario pode faltar num mes.
+    float tempo_de_trabalho = (float)diasFaltas / 31.0; // Para simplificar, um mes tem 31 dias, que eh o maximo que um funcionario pode faltar num mes.
 
     float desconto_salario = tempo_de_trabalho * salario_base;
 
